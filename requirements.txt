@@ -1,0 +1,3 @@
+flask
+react
+sqlite3
