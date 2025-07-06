@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import uuid
 import sqlite3
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -62,6 +63,18 @@ def delete_expense(expense_id):
 @app.route('/')
 def home():
     return "Expense Tracker Flask API is running with SQLite!"
+
+from flask import send_from_directory
+
+from flask import send_from_directory
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(os.path.join("build", path)):
+        return send_from_directory('build', path)
+    else:
+        return send_from_directory('build', 'index.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
