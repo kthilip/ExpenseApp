@@ -1,3 +1,7 @@
-flask
-react
-sqlite3
+gunicorn app:app
+react-scripts start
+
+
+import sqlite3
+
+conn = sqlite3.connect('mydatabase.db')
